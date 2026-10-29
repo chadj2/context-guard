@@ -1,0 +1,28 @@
+{
+  "name": "context-guard",
+  "version": "0.5.0",
+  "description": "Lets Claude check how full its context is, warns it past a share of the autocompact window, lets it compact the session at a stopping point and carry on, and counts the compactions, stopping Claude past a number of them without you.",
+  "author": { "name": "Chad Juliano" },
+  "homepage": "https://github.com/chadj2/context-guard",
+  "repository": "https://github.com/chadj2/context-guard",
+  "license": "MIT",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "warnPercent": {
+      "type": "number",
+      "title": "Warn at %",
+      "description": "How full the window is, in percent, when Claude and you are first told: autocompact's window where autocompact is on, else the model's whole window. 80 by default.",
+      "default": 80,
+      "min": 1,
+      "max": 100
+    },
+    "compactionLimit": {
+      "type": "number",
+      "title": "Compactions without you",
+      "description": "How many compactions Claude carries on through before you write again: past it Claude is told to stop, and past one more its tool calls are refused until you write. 3 by default; 0 stops Claude at the first.",
+      "default": 3,
+      "min": 0,
+      "max": 100
+    }
+  }
+}

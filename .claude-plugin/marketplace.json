@@ -1,0 +1,6 @@
+{
+  "name": "context-guard",
+  "description": "context-guard, a Claude Code mod that warns Claude as its context fills and lets it compact at a stopping point.",
+  "owner": { "name": "Chad Juliano" },
+  "plugins": [{ "name": "context-guard", "source": "./" }]
+}

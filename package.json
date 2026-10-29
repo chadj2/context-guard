@@ -1,0 +1,20 @@
+{
+  "name": "context-guard",
+  "version": "0.5.0",
+  "private": true,
+  "description": "The checks for context-guard, a Claude Code mod. The plugin itself needs no npm packages.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "validate": "claude plugin validate .",
+    "test": "claude plugin test .",
+    "typecheck": "tsc -p .",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "check": "npm run validate && npm run typecheck && npm run format:check && npm test"
+  },
+  "devDependencies": {
+    "oxfmt": "0.74.0",
+    "typescript": "^7.0.2"
+  }
+}

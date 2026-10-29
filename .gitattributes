@@ -1,0 +1,2 @@
+# LF in every checkout, whatever core.autocrlf is: oxfmt takes a line that ends in CRLF for one to lay out again.
+* text=auto eol=lf
