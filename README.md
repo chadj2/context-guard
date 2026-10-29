@@ -33,7 +33,9 @@ This repository is a plugin marketplace that lists context-guard. To install the
 
 Answer `y` to add the marketplace, and then choose a scope. From a shell, the same install is `claude plugin install context-guard --marketplace chadj2/context-guard`. In the desktop app, where `/plugin` doesn't run, click + next to the prompt box, then Plugins, then Add marketplace with `chadj2/context-guard`, and then Add plugin.
 
-The plugin's ID is `context-guard@context-guard`, which is the plugin's name followed by the marketplace's name. The commands below, and the settings ([4](#4-the-settings)), name the plugin by its ID.
+Install it with Claude Code 2.1.308 or later, which is the version that the plugin was written against. VS Code's extension carries its own `claude`, which may be newer than the one on the PATH. It's in `~/.vscode/extensions/anthropic.claude-code-<version>-<platform>/resources/native-binary/`. On Windows, WinGet's newest Claude Code was 2.1.302 on 2026-10-28. So on a Windows machine whose `claude` comes from WinGet, run the install with the extension's `claude` instead.
+
+The plugin's ID is `context-guard@context-guard`, which is the plugin's name followed by the marketplace's name. Once a machine has added the marketplace, the commands name the plugin by its ID, and so do the settings ([4](#4-the-settings)).
 
 The scope says where the plugin is enabled:
 
@@ -45,7 +47,13 @@ The scope says where the plugin is enabled:
   claude plugin install context-guard@context-guard --scope project
   ```
 
-  The first command declares the marketplace under `extraKnownMarketplaces`, and the second enables the plugin under `enabledPlugins`. Anyone else who works in the project is then asked, in a terminal session, to add the marketplace and install the plugin. VS Code's extension doesn't ask. So on each machine, the plugin is installed once from a terminal, either by running `claude` in the project and accepting the prompts, or by running the second command above.
+  The first command declares the marketplace under `extraKnownMarketplaces`, and the second enables the plugin under `enabledPlugins`. Anyone else who works in the project is then asked, in a terminal session, to add the marketplace and install the plugin. VS Code's extension doesn't ask. So on every other machine, the plugin is installed once from a terminal in the project, either by running `claude` and accepting the prompts, or by running this command:
+
+  ```sh
+  claude plugin install context-guard --marketplace chadj2/context-guard --scope project
+  ```
+
+  `--marketplace` adds the marketplace to the machine, in the user's settings, before the install. Without it, the install looks in the marketplace that the project declares, which that machine hasn't added yet, and it finds no plugin there. The install also writes the project's `.claude/settings.json` again, with the same settings in another order, so put that file back with `git checkout -- .claude/settings.json` afterwards. The failure without `--marketplace`, and the reordering, were seen with Claude Code 2.1.312 on 2026-10-28.
 
 Each machine runs the copy of the plugin that it installed. [5.4](#54-releasing-a-change) says how a new version reaches that copy.
 
@@ -152,7 +160,7 @@ When to autocompact is Claude Code's own setting, `/autocompact`, which the plug
 
 Each machine keeps its own settings, in `~/.claude/settings.json` under `pluginConfigs["context-guard@context-guard"]`. They're set in one of these ways:
 
-- **As the plugin is installed:** on the screen that the install shows, or with `--config`, as in `claude plugin install context-guard@context-guard --config warnPercent=75`.
+- **As the plugin is installed:** on the screen that the install shows, or with `--config`, as in `claude plugin install context-guard --marketplace chadj2/context-guard --config warnPercent=75`.
 - **In a terminal session:** with `/plugin configure context-guard@context-guard`.
 - **From a shell:** this is the way for VS Code's panel, where `/plugin` doesn't run. The first command below shows the settings, and the second sets them. The values are given as strings, and Claude Code says to restart to apply them.
 
@@ -161,7 +169,7 @@ Each machine keeps its own settings, in `~/.claude/settings.json` under `pluginC
   echo '{"warnPercent": "75", "compactionLimit": "3"}' | claude plugin configure context-guard@context-guard --values-stdin
   ```
 
-  `claude plugin configure` needs Claude Code 2.1.308 or later, as 2.1.278 doesn't have it (2026-10-22). VS Code's extension carries its own `claude`, which may be newer than the one on the PATH. It's in `~/.vscode/extensions/anthropic.claude-code-<version>-<platform>/resources/native-binary/`.
+  `claude plugin configure` needs Claude Code 2.1.308 or later, as 2.1.278 doesn't have it (2026-10-22). [1](#1-installing-it) says where VS Code's extension keeps a `claude` that may be newer than the one on the PATH.
 
 ## 5 Developing it
 
