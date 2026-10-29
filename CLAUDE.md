@@ -6,9 +6,9 @@ This file guides Claude Code in this repository. What the plugin does, how it's 
 
 ## Working on it
 
-- Run `npm run check` before each commit. It validates the plugin, type-checks it, checks its layout and runs its tests ([README.md §5.3](README.md#53-checking-it)).
-- A change to what the plugin does changes the README in the same commit. [README.md §5.5](README.md#55-what-the-api-was-found-doing) records what the API was found doing, with Claude Code's version and the date.
-- A change that should reach the machines that installed the plugin bumps its version ([README.md §5.4](README.md#54-releasing-a-change)).
+- Run `npm run check` before each commit. It validates the plugin, type-checks it, checks its layout and runs its tests ([README.md §6.3](README.md#63-checking-it)).
+- A change to what the plugin does changes the README in the same commit. [README.md §6.5](README.md#65-what-the-api-was-found-doing) records what the API was found doing, with Claude Code's version and the date.
+- A change that should reach the machines that installed the plugin bumps its version ([README.md §6.4](README.md#64-releasing-a-change)).
 - Push only when the user asks.
 
 ## Writing

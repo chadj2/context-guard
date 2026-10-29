@@ -12,7 +12,7 @@
     // A formatter would pad every Markdown table, so one changed cell changes them all.
     "**/*.md",
     "package-lock.json",
-    // Claude Code's API types, which it writes in its own layout (README.md §5.2).
+    // Claude Code's API types, which it writes in its own layout (README.md §6.2).
     ".claude-plugin/types/**",
   ],
 }

@@ -1,4 +1,4 @@
 node_modules/
-# Claude Code's API types, which it writes as it loads the plugin from this folder (README.md §5.2).
+# Claude Code's API types, which it writes as it loads the plugin from this folder (README.md §6.2).
 .claude-plugin/types/
 .DS_Store
